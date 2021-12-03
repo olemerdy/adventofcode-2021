@@ -6,14 +6,6 @@ import org.scalatest.matchers.*
 
 val sample = List(199, 200, 208, 210, 200, 207, 240, 269, 260, 263)
 
-class Day01Spec extends AnyFlatSpec with should.Matchers {
-  val triplets = List((199, 200, 208), (200, 208, 210), (208, 210, 200), (210, 200, 207), (200, 207, 240), (207, 240, 269), (240, 269, 260), (269, 260, 263))
-
-  "Sample list" should "have triplets" in {
-    Day01.triplets(sample) shouldBe triplets
-  }
-}
-
 class Part1Spec extends AnyFlatSpec with should.Matchers {
 
   "Sample list" should "have 7 measurements larger than the previous" in {
@@ -29,6 +21,12 @@ class Part1Spec extends AnyFlatSpec with should.Matchers {
 }
 
 class Part2Spec extends AnyFlatSpec with should.Matchers {
+  val triplets = List((199, 200, 208), (200, 208, 210), (208, 210, 200), (210, 200, 207), (200, 207, 240), (207, 240, 269), (240, 269, 260), (269, 260, 263))
+
+  "Sample list" should s"have triplets $triplets" in {
+    Part2.triplets(sample) shouldBe triplets
+  }
+
   val tripletsSum = List(607, 618, 618, 617, 647, 716, 769, 792)
 
   "Sample list" should s"have tripletSum of $tripletsSum" in {
@@ -41,7 +39,7 @@ class Part2Spec extends AnyFlatSpec with should.Matchers {
 
   val expected = 1724
 
-  "My input" should  s"have a part 2 result of $expected" in {
+  "My input" should s"have a part 2 result of $expected" in {
     Part2.result(Day01.myNumbers) shouldBe expected
   }
 }

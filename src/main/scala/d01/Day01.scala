@@ -9,27 +9,27 @@ object Day01 {
 
   lazy val myNumbers: List[Int] =
     myInput.getLines.map(_.toInt).toList
+}
 
+object Part1 {
   def pairs[T](list: List[T]): List[(T, T)] =
     if list.isEmpty then Nil else
       list zip list.tail
 
-  def triplets[T](list: List[T]): List[(T, T, T)] =
-    if list.size < 3 then Nil else
-      list zip list.tail zip list.tail.tail map { case ((a, b), c) => (a, b, c) }
-}
-
-object Part1 {
   def result(numbers: List[Int]): Int =
-    Day01.pairs(numbers).count { case (a, b) => a < b }
+    pairs(numbers).count { case (a, b) => a < b }
 
   @main def runPart1(): Unit =
     println(result(Day01.myNumbers))
 }
 
 object Part2 {
+  def triplets[T](list: List[T]): List[(T, T, T)] =
+    if list.size < 3 then Nil else
+      list zip list.tail zip list.tail.tail map { case ((a, b), c) => (a, b, c) }
+
   def tripletsSum(numbers: List[Int]): List[Int] =
-    Day01.triplets(numbers).map { case (a, b, c) => a + b + c }
+    triplets(numbers).map { case (a, b, c) => a + b + c }
 
   def result(numbers: List[Int]): Int =
     Part1.result(tripletsSum(numbers))
